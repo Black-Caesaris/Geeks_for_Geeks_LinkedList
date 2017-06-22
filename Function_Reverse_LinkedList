@@ -1,0 +1,30 @@
+/* Linked List Node structure
+   struct Node  {
+     int data;
+     Node *next;
+  }
+*/
+
+// Should reverse list and return new head.
+Node* reverse(Node *head)
+{
+  if(head == NULL)
+    return NULL;
+    
+    Node* prev = NULL;
+    Node* curr = head;
+    Node* nxt = head;
+    
+    
+    while(curr!=NULL)
+    {
+        nxt = curr->next;
+        curr->next =prev;
+        prev = curr;
+        curr = nxt;
+        
+    }
+    head = prev;
+    return head;
+    
+}
