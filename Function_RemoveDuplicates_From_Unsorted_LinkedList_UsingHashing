@@ -1,0 +1,53 @@
+/*
+
+The structure of linked list is the following
+
+struct Node
+{
+int data;
+Node* next;
+};
+
+*/
+
+
+Node *removeDuplicates(Node *root)
+{
+    if(root == NULL)
+        return root;
+    unordered_map<int, int> umap;
+    if(root->next == NULL)
+        return root;
+    
+    Node* temp = root;
+    int count = 1;
+    Node* store = NULL;
+    Node* prev = root;
+    //creating hash table.
+    while(temp)
+    {   
+        
+        if(umap.count(temp->data) > 0)
+        {   
+            
+            //delete this element
+            store = temp->next;
+            free(temp);
+            temp = store;
+            prev->next = temp ;
+            continue;
+            
+        }
+        else
+        {
+        umap.insert(make_pair(temp->data, count));
+        prev = temp;
+        temp = temp->next;
+        }
+        
+    }
+    //temp = head;
+    //checking for duplicates
+    return root;
+    
+}
