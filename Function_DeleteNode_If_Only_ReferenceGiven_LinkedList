@@ -1,0 +1,19 @@
+/* Link list node 
+struct Node
+{
+    int data;
+    Node* next;
+}*/
+
+// This function should delete node from linked list. The function
+// may assume that node exists in linked list and is not last node
+void deleteNode(Node *node)
+{   
+   if(node == NULL)
+        return ;
+    Node* temp  = node->next->next;
+    node->data = node->next->data;
+    free(node->next);
+    node->next = temp;
+    
+}
