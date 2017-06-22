@@ -1,0 +1,67 @@
+/*
+structure of the node of the list is as
+struct node
+{
+	int data;
+	struct node* next;
+};
+*/
+void sortedInsert(struct node** head_ref, int data)
+{
+    node* newnode = new node();
+    newnode->data = data;
+    
+    if((*head_ref) == NULL)
+    {
+        (*head_ref)  = newnode ;
+        return;
+    }
+    
+    node* prev = NULL;
+    node* temp = (*head_ref);
+    node* store = NULL;
+    //only if one node head is present
+    if((*head_ref)->next ==NULL)
+    {
+        if((*head_ref)->data < data)
+        {
+            (*head_ref)->next = newnode;
+            return;
+        }
+        else
+        {
+            (*head_ref) = newnode;
+            newnode->next = temp;
+            return;
+        }
+    }
+    //insert in beginning
+    if((*head_ref)->data  > data)
+    {
+            (*head_ref) = newnode;
+            newnode->next = temp;
+            return;
+    }
+    temp = (*head_ref);
+    //general
+    while(temp && temp->data < data)
+    {
+        prev = temp;
+        temp = temp->next;
+    }
+    //if not last element
+    if(temp!=NULL)
+    {
+        store = prev->next;
+        prev->next = newnode;
+        newnode->next = store;
+        return;
+    }
+    else
+    {
+        prev->next = newnode;
+        newnode->next =NULL;
+        //return;
+    }
+    
+}
