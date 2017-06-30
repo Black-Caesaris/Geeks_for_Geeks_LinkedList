@@ -1,0 +1,70 @@
+/*The structure of linked list is the following
+struct Node
+{
+int data;
+Node* next; 
+};*/
+
+/*The function removes the loop from the linked list if present
+You are required to complete this method*/
+void removeTheLoop(Node *node)
+{
+     if(node == NULL)
+     return;
+     if(node->next == nullptr)
+     return ;
+     if(node->next->next = node)
+     {
+         node->next->next = nullptr;
+         return;
+     }
+     //finding loop;
+     Node* slow = node;
+     Node* fast = node;
+     int count = 0;
+     
+     while(fast)
+     {
+         slow = slow->next;
+         fast = fast->next;
+         if(fast)
+         {
+             fast = fast->next;
+         }
+         
+         if(slow == fast)
+         {
+             //code for breaking the loop
+             Node* temp = slow;
+             temp = temp->next;
+             count++;
+             
+             while(temp!=slow)
+             {
+                 temp = temp->next;
+                 count++;
+             }
+             //count mil gaya
+             temp = node;
+             while(count)
+             {
+                 temp = temp->next;
+                 count--;
+             }
+             Node* curr = node;
+             Node* prev = nullptr;
+             
+             while(temp!=curr)
+             {
+                 temp = temp->next;
+                 prev = curr;
+                 curr = curr->next;
+             }
+             
+             prev->next = nullptr;
+             break;
+         }
+     }
+     
+     
+}
