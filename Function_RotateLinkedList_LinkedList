@@ -1,0 +1,34 @@
+/*
+  Rotate a linked list after node k
+  The input list will have at least one element  
+  Return pointer to head of rotated linked list 
+  Node is defined as 
+  struct node
+  {
+     int data;
+     struct node *next;
+  }
+*/
+void rotate(struct node **head_ref, int k)
+{ 
+  if(*head_ref == NULL)
+    return;
+    
+    node* store = NULL;
+    node* tail = *head_ref;
+    node* temp = *head_ref;
+    while(k>1)
+    {
+        temp = temp->next;
+        tail = tail->next;
+        k--;
+    }
+    while(tail->next!=NULL)
+    {
+        tail = tail->next;
+    }
+    tail->next = *head_ref;
+    store = temp->next;
+    temp->next = NULL;
+    *head_ref = store;
+}
