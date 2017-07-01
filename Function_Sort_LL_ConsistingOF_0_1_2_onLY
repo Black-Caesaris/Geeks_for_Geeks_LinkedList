@@ -1,0 +1,67 @@
+/*
+  Sort the list of 0's,1's and 2's
+  The input list will have at least one element  
+  Node is defined as 
+  struct Node
+  {
+     int data;
+     Node *next;
+  }
+
+*/
+
+
+void sortList(Node *head)
+{
+   if(head == NULL)
+    return;
+    
+    int c0 = 0 ;
+    int c1 = 0 ;
+    int c2 = 0 ;
+    
+    Node* temp = head;
+    while(temp)
+    {
+        if(temp->data == 0)
+        {
+            c0++;
+            temp = temp->next;
+        }
+        else if(temp->data == 1)
+        {
+            c1++;
+            temp = temp->next;
+            
+        }
+        else{
+            c2++;
+            temp = temp->next;
+        }
+    }
+    temp = head;
+    while(temp)
+    {
+        if(c0)
+        {
+            temp->data = 0;
+            c0--;
+            temp = temp->next;
+        }
+        else if(c1)
+        {
+            temp->data = 1;
+            c1--;
+            temp = temp->next;
+            
+            
+        }
+        else{
+            temp->data = 2;
+            c2--;
+            temp = temp->next;
+        }
+    }
+}
+
+
